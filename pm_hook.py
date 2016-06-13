@@ -10,4 +10,5 @@ def process_message_hook(peer, mailfrom, rcpttos, data):
     for c in Client.__table__.foreign_keys:
         print(c)
 
-    print(Client.log_me())
+    email = Client.log_me()
+    print(email)
