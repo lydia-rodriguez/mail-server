@@ -1,0 +1,74 @@
+"2015-07-13 20:05:02,819","WARNING","Traceback (most recent call last):
+  File ""/opt/mail-server/simple_mail_server.py"", line 28, in process_message
+    self._session.commit()
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/scoping.py"", line 150, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 790, in commit
+    self.transaction.commit()
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 392, in commit
+    self._prepare_impl()
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 372, in _prepare_impl
+    self.session.flush()
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 2004, in flush
+    self._flush(objects)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 2122, in _flush
+    transaction.rollback(_capture_exception=True)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/langhelpers.py"", line 60, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 2086, in _flush
+    flush_context.execute()
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/unitofwork.py"", line 373, in execute
+    rec.execute(self)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/unitofwork.py"", line 532, in execute
+    uow
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/persistence.py"", line 174, in save_obj
+    mapper, table, insert)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/persistence.py"", line 779, in _emit_insert_statements
+    execute(statement, params)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py"", line 914, in execute
+    return meth(self, multiparams, params)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/elements.py"", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py"", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py"", line 1146, in _execute_context
+    context)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py"", line 1341, in _handle_dbapi_exception
+    exc_info
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py"", line 199, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py"", line 1139, in _execute_context
+    context)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py"", line 450, in do_execute
+    cursor.execute(statement, parameters)
+OperationalError: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+ [SQL: 'INSERT INTO messages (source, sender, recipients, body, message_read, time_received, ttl_ts) VALUES (%(source)s, %(sender)s, %(recipients)s, %(body)s, %(message_read)s, %(time_received)s, %(ttl_ts)s) RETURNING messages.message_id'] [parameters: {'body': 'Content-Type: multipart/mixed; boundary=""===============1022867682837068310==""\nMIME-Version: 1.0\nFrom: alarmmonitor@fsgi.com\nTo: charorwang@gmail.com\nSubject: VW_IL_Lincolnwood: Alarm Cleared - Alert SensorFault OA Temp\n\n--===============1022867682837068310==\nContent-Type: text/plain; charset=""us-ascii""\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\n\nMon Jul 13 15:00:20 2015\n\nAn EMS Return To Normal Has Occured\n\nEMS Point: IN-01 OA Temp\nEMS Value: 95 Deg.F.\nEMS Message: Sensor RTN-Sensor has Returned to Normal.\n--===============1022867682837068310==--', 'ttl_ts': 1439409902.686011, 'sender': 'alarmmonitor@fsgi.com', 'recipients': ""['charorwang@gmail.com']"", 'source': ""('67.208.44.21', 58744)"", 'message_read': False, 'time_received': 1436817902.686011}]
+"
+"2015-07-13 20:06:49,998","WARNING","Traceback (most recent call last):
+  File ""/opt/mail-server/simple_mail_server.py"", line 28, in process_message
+    self._session.commit()
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/scoping.py"", line 150, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 790, in commit
+    self.transaction.commit()
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 390, in commit
+    self._assert_active(prepared_ok=True)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 214, in _assert_active
+    % self._rollback_exception
+InvalidRequestError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+ [SQL: 'INSERT INTO messages (source, sender, recipients, body, message_read, time_received, ttl_ts) VALUES (%(source)s, %(sender)s, %(recipients)s, %(body)s, %(message_read)s, %(time_received)s, %(ttl_ts)s) RETURNING messages.message_id'] [parameters: {'body': 'Content-Type: multipart/mixed; boundary=""===============1022867682837068310==""\nMIME-Version: 1.0\nFrom: alarmmonitor@fsgi.com\nTo: charorwang@gmail.com\nSubject: VW_IL_Lincolnwood: Alarm Cleared - Alert SensorFault OA Temp\n\n--===============1022867682837068310==\nContent-Type: text/plain; charset=""us-ascii""\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\n\nMon Jul 13 15:00:20 2015\n\nAn EMS Return To Normal Has Occured\n\nEMS Point: IN-01 OA Temp\nEMS Value: 95 Deg.F.\nEMS Message: Sensor RTN-Sensor has Returned to Normal.\n--===============1022867682837068310==--', 'ttl_ts': 1439409902.686011, 'sender': 'alarmmonitor@fsgi.com', 'recipients': ""['charorwang@gmail.com']"", 'source': ""('67.208.44.21', 58744)"", 'message_read': False, 'time_received': 1436817902.686011}]
+"
+"2015-07-13 20:08:25,345","WARNING","Traceback (most recent call last):
+  File ""/opt/mail-server/simple_mail_server.py"", line 28, in process_message
+    self._session.commit()
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/scoping.py"", line 150, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 790, in commit
+    self.transaction.commit()
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 390, in commit
+    self._assert_active(prepared_ok=True)
+  File ""/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py"", line 214, in _assert_active
+    % self._rollback_exception
+InvalidRequestError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
+ [SQL: 'INSERT INTO messages (source, sender, recipients, body, message_read, time_received, ttl_ts) VALUES (%(source)s, %(sender)s, %(recipients)s, %(body)s, %(message_read)s, %(time_received)s, %(ttl_ts)s) RETURNING messages.message_id'] [parameters: {'body': 'Content-Type: multipart/mixed; boundary=""===============1022867682837068310==""\nMIME-Version: 1.0\nFrom: alarmmonitor@fsgi.com\nTo: charorwang@gmail.com\nSubject: VW_IL_Lincolnwood: Alarm Cleared - Alert SensorFault OA Temp\n\n--===============1022867682837068310==\nContent-Type: text/plain; charset=""us-ascii""\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\n\nMon Jul 13 15:00:20 2015\n\nAn EMS Return To Normal Has Occured\n\nEMS Point: IN-01 OA Temp\nEMS Value: 95 Deg.F.\nEMS Message: Sensor RTN-Sensor has Returned to Normal.\n--===============1022867682837068310==--', 'ttl_ts': 1439409902.686011, 'sender': 'alarmmonitor@fsgi.com', 'recipients': ""['charorwang@gmail.com']"", 'source': ""('67.208.44.21', 58744)"", 'message_read': False, 'time_received': 1436817902.686011}]
+"
