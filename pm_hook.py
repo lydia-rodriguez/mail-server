@@ -10,6 +10,9 @@ def process_message_hook(peer, mailfrom, rcpttos, data):
     print(clients_list)
 
     client_email = column('client_email')
-    s = select(['*']).where(client_email == str(mailfrom))
+    s = select(['*']).where(client_email == (str(mailfrom)))
 
-    print(s)
+    results = s.execute()
+
+    for row in results:
+        print(row)
