@@ -23,3 +23,11 @@ class Client(Base):
     synonym2 = Column(Text)
     synonym3 = Column(Text)
 
+    def __iter__(self):
+        values = vars(self)
+        for attr in self.__mapper__.columns.keys():
+            if attr in values:
+                yield attr, values[attr]
+
+    def log_me(self):
+        return dict(self)
