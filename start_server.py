@@ -26,14 +26,14 @@ def prompt_for_password(prompt, second_prompt):
         test_pass = getpass.getpass(prompt)
         test_pass_2 = getpass.getpass(second_prompt)
         if test_pass != test_pass_2:
-            print 'Passwords do not match. Try again.'
+            print('Passwords do not match. Try again.')
     return test_pass
 
 
 def prompt_for_username(prompt):
     test_un = raw_input(prompt)
     while not test_un:
-        print 'Username must be provided. Try again.'
+        print('Username must be provided. Try again.')
         test_un = raw_input(prompt)
     return test_un
 

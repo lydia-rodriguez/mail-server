@@ -1,7 +1,7 @@
 --- #config file for test data collector
 #database config
 db_protocol:            'postgresql'
-db_host:                '10.10.0.37'
+db_host:                '10.10.0.38'
 db_port:                '5432'
 db_name:                'mail_parser_db'
 db_username:            'postgres'
@@ -11,7 +11,7 @@ db_password:            'a'
 #connection_string:      'sqlite:///testdb.sqlite'
 
 #SMTP server setup
-ip_address:             '10.10.0.37'
+ip_address:             '10.10.0.38'
 port:                   8888
 msg_ttl:                2592000
 msg_ttl_enabled:        false
