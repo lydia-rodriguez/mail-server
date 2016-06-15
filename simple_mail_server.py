@@ -22,7 +22,7 @@ class SimpleMailServer(smtpd.SMTPServer):
         kwargs.pop('connection_string', None)
         smtpd.SMTPServer.__init__(self, *args, **kwargs)
 
-    def process_message(self, peer, mailfrom, rcpttos, data):
+    def process_message(self, peer, mailfrom, rcpttos, data, engine):
         try:
             # print data
             time_received = time.time()
