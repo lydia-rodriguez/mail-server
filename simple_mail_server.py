@@ -20,7 +20,7 @@ class SimpleMailServer(smtpd.SMTPServer):
         kwargs.pop('logger', None)
         kwargs.pop('msg_ttl', None)
         kwargs.pop('connection_string', None)
-        self.engine = kwargs['eng']
+        self.engine = kwargs.pop('eng')
         smtpd.SMTPServer.__init__(self, *args, **kwargs)
 
 
