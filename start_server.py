@@ -15,11 +15,8 @@ def start_server(ip_address, port, connection_string, logger, msg_ttl):
     engine = create_engine(connection_string)
     Base.metadata.create_all(engine)
     server = SimpleMailServer((ip_address, port), None, session=scoped_session(sessionmaker(bind=engine)),
-                              connection_string=connection_string, logger=logger, msg_ttl=msg_ttl)
+                              connection_string=connection_string, logger=logger, msg_ttl=msg_ttl, eng=engine)
     asyncore.loop()
-
-
-
 
 
 def prompt_for_password(prompt, second_prompt):

@@ -20,7 +20,9 @@ class SimpleMailServer(smtpd.SMTPServer):
         kwargs.pop('logger', None)
         kwargs.pop('msg_ttl', None)
         kwargs.pop('connection_string', None)
+        self.engine = kwargs['eng']
         smtpd.SMTPServer.__init__(self, *args, **kwargs)
+
 
     def process_message(self, peer, mailfrom, rcpttos, data):
         try:
@@ -29,7 +31,7 @@ class SimpleMailServer(smtpd.SMTPServer):
             ttl_ts = time_received + self._message_ttl
             self._session.add(Message(source=str(peer), sender=str(mailfrom), recipients=str(rcpttos), body=str(data),
                                       time_received=time_received, ttl_ts=ttl_ts))
-            process_message_hook(peer, mailfrom, rcpttos, data)
+            process_message_hook(peer, mailfrom, rcpttos, data, self.engine)
             if self._message_ttl_enabled:
                 self._session.query(Message).filter(Message.ttl_ts <= time.time()).delete()
             self._session.commit()

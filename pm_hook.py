@@ -2,7 +2,7 @@ from mail_orm import Client
 from sqlalchemy import select, column
 
 
-def process_message_hook(peer, mailfrom, rcpttos, data):
+def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     print("Message processed.")
     print(mailfrom)
 
@@ -12,7 +12,7 @@ def process_message_hook(peer, mailfrom, rcpttos, data):
     client_email = column('client_email')
     s = select(['*']).where(client_email == (str(mailfrom)))
 
-    results = s.execute()
+    results = engine.execute(s)
 
     for row in results:
         print(row)
