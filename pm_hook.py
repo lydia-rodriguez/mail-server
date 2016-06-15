@@ -10,7 +10,7 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     print(clients_list)
 
     client_email = column('client_email')
-    s = Client.select().where(client_email == (str(mailfrom)))
+    s = select([Client.c.client_email]).where(Client.c.client_email == (str(mailfrom)))
 
     results = engine.execute(s)
 
