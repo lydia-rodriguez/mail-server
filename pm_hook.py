@@ -12,7 +12,7 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     for row in results:
         # print("\n".join(row))
         # print(row)
-        if 'FSG_TEST' in row:
+        if 'FSG_TEST' in results:
             print("Match(es) found:")
             print("\n".join(row))
         else:
