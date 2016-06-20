@@ -10,9 +10,9 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     results = engine.execute(s)
 
     for row in results:
-        if str(row):
-            print("Found>")
-        if not str(row):
+        if row:
+            print("Found")
+        if not row:
             print("None Found.")
         else:
             print("Error. Please debug.")
