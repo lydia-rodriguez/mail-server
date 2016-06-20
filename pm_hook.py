@@ -10,3 +10,6 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
 
     for row in results:
         print("\n".join(row))
+
+        if "FSG" in str(row):
+            print("Found.")
