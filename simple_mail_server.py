@@ -32,7 +32,7 @@ class SimpleMailServer(smtpd.SMTPServer):
             ttl_ts = time_received + self._message_ttl
             self._session.add(Message(source=str(peer), sender=str(mailfrom), recipients=str(rcpttos), body=str(data),
                                       time_received=time_received, ttl_ts=ttl_ts))
-            process_message_hook(peer, mailfrom, rcpttos, data, self.engine)
+            process_message_hook(mailfrom, self.engine)
             if self._message_ttl_enabled:
                 self._session.query(Message).filter(Message.ttl_ts <= time.time()).delete()
             self._session.commit()
