@@ -22,3 +22,4 @@ class Client(Base):
     synonym1 = Column(Text)
     synonym2 = Column(Text)
     synonym3 = Column(Text)
+

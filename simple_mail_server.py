@@ -23,6 +23,7 @@ class SimpleMailServer(smtpd.SMTPServer):
         self.engine = kwargs.pop('eng')
         smtpd.SMTPServer.__init__(self, *args, **kwargs)
 
+    print("Running . . . .")
 
     def process_message(self, peer, mailfrom, rcpttos, data):
         try:
