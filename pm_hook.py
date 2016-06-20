@@ -12,7 +12,7 @@ def process_message_hook(mailfrom, engine):
     for row in results:
         # print("\n".join(row))
 
-        c = str(results(row))
+        c = ''.join(row)
 
         print("client: " + c)
 
