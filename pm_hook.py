@@ -12,6 +12,8 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     if results:
         for row in results:
             print("\n".join(row))
+    if not results:
+        print("no match.")
     else:
         print("Error. Please debug.")
 
