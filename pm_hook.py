@@ -10,7 +10,7 @@ def process_message_hook(mailfrom, engine):
     results = engine.execute(s)
 
     for row in results:
-        # print("\n".join(row))
+        print("\n".join(row))
 
         c = str(row)
 
