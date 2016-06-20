@@ -10,6 +10,8 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     s = select([Client.client_email]).where(Client.client_email == (str(mailfrom)))
 
     results = engine.execute(s)
-
-    for row in results:
-        print("".join(row))
+    if s is not None:
+        for row in results:
+            print("Match found: ".join(row))
+    else:
+        print("No match found. Please resend email.")
