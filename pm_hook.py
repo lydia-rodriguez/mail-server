@@ -9,10 +9,7 @@ def process_message_hook(mailfrom, engine):
     s = select([Client.client_name]).where(Client.client_email == (str(mailfrom)))
     results = engine.execute(s)
 
-    for row in results:
-        # print("\n".join(row))
-
-        if len(row) > 0:
-            print("Found.")
-        else:
-            print("Not found.")
+    if len(results) > 0:
+        print("Found.")
+    else:
+        print("Not found.")
