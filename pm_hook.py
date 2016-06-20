@@ -10,11 +10,9 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     results = engine.execute(s)
 
     for row in results:
-        print("\n".join(row))
+        # print("\n".join(row))
 
-        if not row:
-            print("No match found. Please resend email.")
-        if row:
+        if row == 'FSG_TEST':
             print("Match(es) found:")
             print("\n".join(row))
         else:
