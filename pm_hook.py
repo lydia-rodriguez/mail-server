@@ -11,13 +11,13 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
 
 
     for row in results:
-        client = row
-        print(client)
+        c = row
+        print(c)
 
-    if 'FSG' in client:
-        print("Found>")
-    else:
-        print("Error. Please debug.")
+        if 'FSG' in c:
+            print("Found>")
+        else:
+            print("Error. Please debug.")
 
 
 
