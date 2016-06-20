@@ -11,8 +11,10 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     for row in results:
         print("\n".join(row))
 
-        if s:
+        if s is None:
+            print("No match found. Please resend email.")
+        if s is not None:
             print("Match(es) found:")
             print("\n".join(row))
         else:
-            print("No match found. Please resend email.")
+            print("Error. Please debug.")
