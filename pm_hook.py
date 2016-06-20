@@ -4,11 +4,13 @@ from sqlalchemy import select, column
 
 def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     print("\nMessage processed.")
-    # print(mailfrom)
-    # client_email = column('client_email')
+    print(mailfrom)
+
     s = select([Client.client_email]).where(Client.client_email == (str(mailfrom)))
     results = engine.execute(s)
     for row in results:
+        print("\n".join(row))
+
         if s is not None:
             print("Match(es) found:")
             print("\n".join(row))
