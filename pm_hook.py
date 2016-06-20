@@ -11,8 +11,10 @@ def process_message_hook(mailfrom, engine):
 
     for row in results:
         # print("\n".join(row))
-        
+
         c = str(row)
+
+        print("client: " + c)
 
         if "FSG" in c:
             print("Found.")
