@@ -3,15 +3,14 @@ from sqlalchemy import select, column
 
 
 def process_message_hook(peer, mailfrom, rcpttos, data, engine):
-    print("Message processed.")
+    print("\nMessage processed.")
     # print(mailfrom)
-
-    client_email = column('client_email')
+    # client_email = column('client_email')
     s = select([Client.client_email]).where(Client.client_email == (str(mailfrom)))
-
     results = engine.execute(s)
-    if s is not None:
-        for row in results:
-            print("Match found: %s".join(row))
-    else:
-        print("No match found. Please resend email.")
+    for row in results:
+        if s is not None:
+            print("Match(es) found:")
+            print("\n".join(row))
+        else:
+            print("No match found. Please resend email.")
