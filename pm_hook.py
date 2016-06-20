@@ -11,7 +11,7 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     for row in results:
         print("\n".join(row))
 
-        if s is not None:
+        if s:
             print("Match(es) found:")
             print("\n".join(row))
         else:
