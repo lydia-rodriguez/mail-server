@@ -9,14 +9,24 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
     s = select([Client.client_name]).where(Client.client_email == (str(mailfrom)))
     results = engine.execute(s)
 
-    if 'FSG' in results:
+
+    for row in results:
+        client = row
+        print(client)
+
+    if 'FSG' in client:
         print("Found>")
     else:
         print("Error. Please debug.")
 
-    for row in results:
-        print("\n".join(row))
-    #     # print(row)
+
+
+
+
+
+
+
+            #     # print(row)
     #     if 'FSG_TEST' in results:
     #         print("Match(es) found:")
     #         print("\n".join(row))
