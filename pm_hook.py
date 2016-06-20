@@ -11,7 +11,7 @@ def process_message_hook(peer, mailfrom, rcpttos, data, engine):
 
 
     for row in results:
-        c = row
+        c = str(row)
         print(c)
 
         if 'FSG' in c:
