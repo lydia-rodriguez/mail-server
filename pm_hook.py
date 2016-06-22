@@ -15,10 +15,10 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     # client_name_sites = select([])
 
     results = engine.execute(client_email_mailfrom)
-    for client_name_results in results:
-        print(''.join(client_name_results))
+    for client in results:
+        print(''.join(client))
 
-    if len(client_name_results) > 0:
+    if len(client) > 0:
         print("Found.")
 
     else:
