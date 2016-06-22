@@ -16,7 +16,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     results = engine.execute(client_email_mailfrom)
     for client in results:
-        print(client)
+        print(''.join(str(client)))
 
     if len(client) > 0:
         print("Found.")
