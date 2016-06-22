@@ -22,11 +22,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     client_name_sites = select([Site.client_id]).where(Site.client_id) == (str(client_id))
 
     results_client_name = engine.execute(client_name_mailfrom)
-    engine.close()
     results_client_id = engine.execute(client_id_mailfrom)
-    engine.close()
     results_site_id = engine.execute(client_name_sites)
-    engine.close()
 
     for client_id in results_client_id:
         print(''.join(map(str, client_id)))
