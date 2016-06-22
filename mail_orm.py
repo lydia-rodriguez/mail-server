@@ -28,7 +28,7 @@ class Client(Base):
 
 
 class Site(Base):
-    __tablename_ = 'sites'
+    __tablename__ = 'sites'
     site_id = Column(Integer, primary_key=True)
     site_num = Column(Integer)
     site_name = Column(VARCHAR)
