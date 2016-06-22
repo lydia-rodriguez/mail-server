@@ -42,3 +42,5 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             print("Site not found.")
     else:
         print("Client not found.")
+
+    engine.close()

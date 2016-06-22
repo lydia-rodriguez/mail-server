@@ -39,7 +39,6 @@ class SimpleMailServer(smtpd.SMTPServer):
             self._message_retry_count = 0
             with open('message_parsed_file', 'w') as f:
                 f.write(str(time_received))
-            self.engine.close()
         except:
             self._session.rollback()
             self._message_retry_count += 1
