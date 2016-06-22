@@ -1,6 +1,6 @@
-from django.db.models import ForeignKey
 from sqlalchemy import Column, Text, Integer, Boolean, Float, BIGINT, VARCHAR, Date
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import ForeignKey
 
 Base = declarative_base()
 
