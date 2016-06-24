@@ -34,7 +34,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     client_id = 5
 
     # Use this query to test if client_id value is found in sites table and output site_id.
-    client_sites = select([Site.c.client_id]).where(Site.c.client_id) == (int(client_id))
+    client_sites = select([Site.client_id]).where(Site.client_id == int(client_id))
 
 
     print(client_sites)
