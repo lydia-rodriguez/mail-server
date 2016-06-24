@@ -6,7 +6,7 @@ from mail_orm import Client, Site
 def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     print("\nMessage processed.")
 
-    client_id = 1
+    client_id = '1'
     client_name = ''
     site_id = ''
 
@@ -23,17 +23,19 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     # results_client_name = engine.execute(client_name_mailfrom)
     # results_client_id = engine.execute(client_id_mailfrom)
-    results_site_id = engine.execute(client_sites)
-    #
+    # results_site_id = engine.execute(client_sites)
+
+    results_site_id = 1
+
     # for client_id in results_client_id:
     #     print(''.join(map(str, client_id)))
-    #
+
     # for client_name in results_client_name:
     #     print(''.join(client_name))
-    #
+
     for site_id in results_site_id:
         print(''.join(map(str, site_id)))
-    #
+
     # if len(client_name) > 0:
     #     print("Client Found: " + str(client_name) + str(client_id))
     #     # if len(site_id) > 0:
@@ -44,7 +46,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     #     print("Client not found.")
 
     # s = engine.executeall(client_name_mailfrom, client_id_mailfrom, client_sites)
-    #
+
     # for c in s:
     #     print(c)
 
