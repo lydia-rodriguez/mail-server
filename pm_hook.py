@@ -31,13 +31,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         results_client_id = conn.execute(client_id_mailfrom)
         ## some code
 
-    client_id = 5
-
     # Use this query to test if client_id value is found in sites table and output site_id.
     client_sites = select([Site.client_id]).where(Site.client_id == int(client_id))
-
-
-    print(client_sites)
 
     with engine.connect() as conn:
         results_site_id = conn.execute(client_sites)
