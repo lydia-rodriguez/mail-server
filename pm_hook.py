@@ -6,9 +6,13 @@ from mail_orm import Client, Site
 def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     print("\nMessage processed.")
 
+    connection = engine.connect()
+
     client_id = '1'
     client_name = ''
     site_id = ''
+
+
 
     # Use this query to test if mailfrom value can be found in client_email column of clients table
     # and output client_name.
@@ -21,10 +25,15 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     # Use this query to test if client_id value is found in sites table and output site_id.
     client_sites = select([Site.client_id]).where(Site.client_id) == (str(client_id))
 
-    results_client_name = engine.execute(client_name_mailfrom)
-    results_client_id = engine.execute(client_id_mailfrom)
-    results_site_id = engine.execute(client_sites)
-
+    with engine.connect as conn:
+        results_client_name = connection.execute(client_name_mailfrom)
+        ## some code
+    with engine.connect as conn:
+        results_client_id = connection.execute(client_id_mailfrom)
+        ## some code
+    with engine.connect as conn:
+        results_site_id = connection.execute(client_sites)
+        ## some code
 
     for client_id in results_client_id:
         print(''.join(map(str, client_id)))
