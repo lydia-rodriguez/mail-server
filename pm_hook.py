@@ -25,11 +25,11 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     # results_client_id = engine.execute(client_id_mailfrom)
     # results_site_id = engine.execute(client_sites)
 
-    for client_id in results_client_id:
-        print(''.join(map(str, client_id)))
+    # for client_id in results_client_id:
+    #     print(''.join(map(str, client_id)))
 
-    # for client_name in results_client_name:
-    #     print(''.join(client_name))
+    for client_name in results_client_name:
+        print(''.join(client_name))
 
     # for site_id in results_site_id:
     #     print(''.join(map(str, site_id)))
