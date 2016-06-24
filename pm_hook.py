@@ -34,7 +34,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     # for site_id in results_site_id:
     #     print(''.join(map(str, site_id)))
 
-    if len(client_id) > 0:
+    if len(client_name) > 0:
         print("Client Found: " + client_name) #+ client_id)
         # if len(site_id) > 0:
         #     print("Site Found: " + site_id)
