@@ -51,7 +51,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         print("Client Found: " + str(client_name) + str(client_id))
         if site_id == 5:
             print("FSG")
-        if site_id > 0:
+        elif site_id > 0:
             print("Site Found: " + str(site_id))
         else:
             print("Site not found.")
