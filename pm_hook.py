@@ -27,14 +27,17 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     results_site_id = 1
 
+    if client_id == results_site_id:
+        print(client_id)
+
     # for client_id in results_client_id:
     #     print(''.join(map(str, client_id)))
 
     # for client_name in results_client_name:
     #     print(''.join(client_name))
 
-    for site_id in results_site_id:
-        print(''.join(map(str, site_id)))
+    # for site_id in results_site_id:
+    #     print(''.join(map(str, site_id)))
 
     # if len(client_name) > 0:
     #     print("Client Found: " + str(client_name) + str(client_id))
