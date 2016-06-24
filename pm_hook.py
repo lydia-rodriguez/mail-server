@@ -27,8 +27,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     results_site_id = 1
 
-    if client_id == results_site_id:
-        print(client_id)
+    # if client_id == results_site_id:
+    print(client_id)
 
     # for client_id in results_client_id:
     #     print(''.join(map(str, client_id)))
