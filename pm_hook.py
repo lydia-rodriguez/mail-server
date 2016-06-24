@@ -21,35 +21,25 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     # Use this query to test if client_id value is found in sites table and output site_id.
     client_sites = select([Site.client_id]).where(Site.client_id) == (str(client_id))
 
-    # results_client_name = engine.execute(client_name_mailfrom)
-    # results_client_id = engine.execute(client_id_mailfrom)
-    # results_site_id = engine.execute(client_sites)
+    results_client_name = engine.execute(client_name_mailfrom)
+    results_client_id = engine.execute(client_id_mailfrom)
+    results_site_id = engine.execute(client_sites)
 
-    results_site_id = 1
 
-    # if client_id == results_site_id:
-    print(client_id)
+    for client_id in results_client_id:
+        print(''.join(map(str, client_id)))
 
-    # for client_id in results_client_id:
-    #     print(''.join(map(str, client_id)))
+    for client_name in results_client_name:
+        print(''.join(client_name))
 
-    # for client_name in results_client_name:
-    #     print(''.join(client_name))
+    for site_id in results_site_id:
+        print(''.join(map(str, site_id)))
 
-    # for site_id in results_site_id:
-    #     print(''.join(map(str, site_id)))
-
-    # if len(client_name) > 0:
-    #     print("Client Found: " + str(client_name) + str(client_id))
-    #     # if len(site_id) > 0:
-    #     #     print("Site Found: " + site_id)
-    #     # else:
-    #     #     print("Site not found.")
-    # else:
-    #     print("Client not found.")
-
-    # s = engine.executeall(client_name_mailfrom, client_id_mailfrom, client_sites)
-
-    # for c in s:
-    #     print(c)
-
+    if len(client_name) > 0:
+        print("Client Found: " + str(client_name) + str(client_id))
+        if len(site_id) > 0:
+            print("Site Found: " + site_id)
+        else:
+            print("Site not found.")
+    else:
+        print("Client not found.")
