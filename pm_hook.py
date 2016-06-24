@@ -26,13 +26,13 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     client_sites = select([Site.client_id]).where(Site.client_id) == (str(client_id))
 
     with engine.connect() as conn:
-        results_client_name = connection.execute(client_name_mailfrom)
+        results_client_name = conn.execute(client_name_mailfrom)
         ## some code
     with engine.connect() as conn:
-        results_client_id = connection.execute(client_id_mailfrom)
+        results_client_id = conn.execute(client_id_mailfrom)
         ## some code
     with engine.connect() as conn:
-        results_site_id = connection.execute(client_sites)
+        results_site_id = conn.execute(client_sites)
         ## some code
 
     for client_id in results_client_id:
