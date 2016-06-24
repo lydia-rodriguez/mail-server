@@ -22,7 +22,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     # and output client_id.
     client_id_mailfrom = select([Client.client_id]).where(Client.client_email == (str(mailfrom)))
 
-    # site_id = 5
+    site_id = 5
 
     with engine.connect() as conn:
         results_client_name = conn.execute(client_name_mailfrom)
@@ -49,17 +49,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     if len(client_name) > 0:
         print("Client Found: " + str(client_name) + str(client_id))
-        if site_id == 1:
-            print("FSG Site Found")
-        elif site_id == 2:
-            print("2")
-        elif site_id == 3:
-            print("3")
-        elif site_id == 4:
-            print("4")
-        elif site_id == 5:
-            print("5")
-        elif site_id > 0:
+        if site_id > 0:
             print("Site Found: " + str(site_id))
         else:
             print("Site not found.")
