@@ -55,7 +55,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 results_client_syn = conn.execute(client_syn)
                 ## some code
                 b = results_client_syn.fetchall()
-                client_syn_dict = dict(zip(c.keys(), c.values()))
+                client_syn_dict = dict(zip(b.keys(), b.values()))
                 for key, value in client_syn_dict.items():
                     k = key
                     client_syn_value = int(value)
@@ -74,7 +74,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         #             client_id = int(value)
         #             # print(key, client_id)
         except:
-            print("NOPE")
+            print("FAIL")
 
     if len(client_name) > 0:
         print("Client Found: " + str(client_name))
