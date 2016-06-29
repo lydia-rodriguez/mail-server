@@ -61,27 +61,6 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                         print("TRUE " + client)
                     else:
                         print("FALSE " + client)
-
-
-                    # b = results_client_syn.fetchall()
-                # client_syn_dict = dict(zip(b.keys(), b.values()))
-                # for key, value in client_syn_dict.items():
-                #     k = key
-                #     client_syn_value = int(value)
-                #     print(client_syn_value)
-
-        # client_id_mailfrom = select([Client.client_id]).where(Client.client_name == mailfrom_str)
-        # try:
-        #     with engine.connect() as conn:
-        #         results_client_id = conn.execute(client_id_mailfrom)
-        #         ## some code
-        #         b = results_client_id.fetchall()
-        #         c = b[0]
-        #         client_id_dict = dict(zip(c.keys(), c.values()))
-        #         for key, value in client_id_dict.items():
-        #             k = key
-        #             client_id = int(value)
-        #             # print(key, client_id)
         except:
             print("FAIL")
 
