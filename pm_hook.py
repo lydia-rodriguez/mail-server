@@ -10,7 +10,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     client_id = '1'
     client_name = ''
-    site_id = ''
+    site_name = ''
 
 
 
@@ -22,7 +22,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     # and output client_id.
     client_id_mailfrom = select([Client.client_id]).where(Client.client_email == (str(mailfrom)))
 
-    site_id = 5
+    site_name = 5
 
     with engine.connect() as conn:
         results_client_name = conn.execute(client_name_mailfrom)
@@ -44,13 +44,13 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     for client_name in results_client_name:
         print(''.join(client_name))
 
-    for site_id in results_site_id:
-        print(''.join(str, site_id))
+    for site_name in results_site_id:
+        print(''.join(site_name))
 
     if len(client_name) > 0:
         print("Client Found: " + str(client_name) + str(client_id))
-        if site_id > 0:
-            print("Site Found: " + str(site_id))
+        if site_name > 0:
+            print("Site Found: " + site_name)
         else:
             print("Site not found.")
     else:
