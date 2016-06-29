@@ -80,7 +80,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         print("Client Found: " + str(client_name))
 
         # Use this query to test if client_id value is found in sites table and output site_name.
-        print(''.join(client_id))
+        print(client_id)
         # client_sites = select([Site.site_name]).where(Site.client_id == int(client_id))
         #
         # try:
