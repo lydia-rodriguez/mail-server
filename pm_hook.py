@@ -29,10 +29,13 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         results_client_id = conn.execute(client_id_mailfrom)
         ## some code
 
-    for client_id in results_client_id:
-        print("client id:")
-        print(''.join(map(str, client_id)))
-        print(type(client_id))
+    for s in engine.query().all():
+        print(s.__dict__)
+
+    # for client_id in results_client_id:
+    #     print("client id:")
+    #     print(''.join(map(str, client_id)))
+    #     print(type(client_id))
         # client_id_encoded = client_id.encode('utf-8')
         # print(client_id_encoded)
     #
