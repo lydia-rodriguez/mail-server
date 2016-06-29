@@ -61,6 +61,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                     if mailfrom_str.count(client) > 0:
                         client_name = str(client.encode('utf-8'))
                         print("Client found: " + client_name)
+                        break
                     else:
                         print(''.join(client))
                         client_syn1 = select([Client.synonym1])
