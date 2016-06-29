@@ -60,7 +60,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                     print(''.join(client))
                     if mailfrom_str.count(client.lower()) > 0:
                         print("TRUE")
-                        client_name = client
+                        client_name = str(client.encode('utf-8'))
                     else:
                         print("FALSE")
                         print(client)
