@@ -50,10 +50,10 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                             print(client_syn2)
                             if client_syn2.synonym2:
                                 if mailfrom_lwr.count(client_syn2.synonym2.lower()) > 0:
-                                print("b string")
-                                print(client_syn2)
-                                client_id = client_syn2.client_id
-                                break
+                                    print("b string")
+                                    print(client_syn2)
+                                    client_id = client_syn2.client_id
+                                    break
                         else:
                             for client_syn3 in client_names_list:
                                 print(5)
