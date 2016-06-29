@@ -72,10 +72,10 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                                         client_syn_name = select([Client.client_name]).where(Client.synonym1 == syn1)
                                         client_name = str(client_syn_name.encode('utf-8'))
                                         break
-                        except:
+                        # except:
 #                             client_syn1 = select([Client.synonym1])
 # 1                            try:
-                            print("fail")
+#                             print("fail")
         except IndexError:
             print("FAIL")
 
