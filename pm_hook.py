@@ -8,9 +8,9 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     connection = engine.connect()
 
-    client_id = ''
-    client_name = ''
-    site_name = ''
+    client_id = None
+    client_name = None
+    site_name = None
     mailfrom_lwr = mailfrom.lower()
 
     print(mailfrom_lwr)
@@ -22,30 +22,31 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     try:
         with engine.connect() as conn:
             results_client_id = conn.execute(client_id_mailfrom).first()
-            print(type(results_client_id))
-            print(results_client_id)
 
-            if not results_client_id:
-                print("also a string")
-                client_names = select([Client.client_id, Client.client_name])
+            if results_client_id:
+                client_id = results_client_id
+            else:
+                client_names = select([Client])
                 client_names_list = conn.execute(client_names).fetchall()
-                for client in client_names_list:
-                    print("another string")
-                    print(client)
-                    if mailfrom_lwr.count(client[1].lower()) > 0:
-                        client_id = client[0]
-                        print("a string")
-                        print(type(client_id))
-                        print(client_id)
-                        break
-
-
-            site_name_fromClient = select([Site.site_name]).where(Site.client_id == results_client_id[0])
-            results_site_name = conn.execute(site_name_fromClient).first()
-            print(type(results_site_name))
-            print(results_site_name)
-
-
+                for each in client_names_list:
+                    print(each)
+                    print(type(each))
+                    #         for client in client_names_list:
+                    #             if mailfrom_lwr.count(client[1].lower()) > 0:
+                    #                 client_id = client[0]
+                    #                 break
+                    #
+                    #
+                    #
+                    #
+                    #     site_name_fromClient = select([Site.site_name]).where(Site.client_id == results_client_id[0])
+                    #     results_site_name = conn.execute(site_name_fromClient).first()
+                    #     print(type(results_site_name))
+                    #     print(results_site_name)
+                    #
+                    # if client_id:
+                    #     print("Client ID: " + client_id)
+                    #
 
     except:
         print("Client ID not found using mailfrom.")
