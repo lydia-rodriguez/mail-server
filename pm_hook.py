@@ -49,20 +49,16 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     except:
         print("Client ID not found using mailfrom.")
 
-        client_syn = select([Client.client_name])
+        client_nm = select([Client.client_name])
         try:
             with engine.connect() as conn:
-                results_client_syn = conn.execute(client_syn).fetchall()
+                results_client_nm = conn.execute(client_nm).fetchall()
                 ## some code
-                print(results_client_syn)
+                print(results_client_nm)
 
-                for client in results_client_syn:
-<<<<<<< HEAD
-                    print("checking . . .")
+                for client in results_client_nm:
+                    print(''.join(client))
                     if mailfrom_str.count(client.lower()) > 0:
-=======
-                    if (mailfrom_str.count(client.lower()) > 0):
->>>>>>> parent of 01f5674... debugging
                         print("TRUE")
                         print(client)
                     else:
