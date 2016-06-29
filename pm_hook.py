@@ -54,7 +54,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             with engine.connect() as conn:
                 results_client_syn = conn.execute(client_syn).fetchall()
                 ## some code
-                # print(results_client_syn)
+                print(results_client_syn)
 
                 for client in results_client_syn:
                     print("checking . . .")
