@@ -37,12 +37,15 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         ## some code
 
     for client_id in results_client_id:
+        print("client id:")
         print(''.join(map(str, client_id)))
 
     for client_name in results_client_name:
+        print("client name:")
         print(''.join(client_name))
 
     for site_name in results_site_id:
+        print("Site name:")
         print(''.join(site_name))
 
     if len(client_name) > 0:
