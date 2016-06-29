@@ -57,7 +57,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 print(results_client_syn)
 
                 for client in results_client_syn:
-                    if (mailfrom_str.count(client.lower()) > 0):
+                    if (mailfrom_str.count(client[0].lower()) > 0):
                         print("TRUE")
                         print(client)
                     else:
