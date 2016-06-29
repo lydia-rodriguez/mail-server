@@ -36,17 +36,24 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                     for client_syn1 in client_names_list:
                         if mailfrom_lwr.count(client_syn1.synonym1.lower()) > 0:
                             client_id = client_syn1.client_id
+                            print("a string")
+                            print(client_syn1)
                             break
                     else:
                         for client_syn2 in client_names_list:
                             if mailfrom_lwr.count(client_syn2.synonym2.lower()) > 0:
+                                print("b string")
+                                print(client_syn2)
                                 client_id = client_syn2.client_id
                                 break
                         else:
                             for client_syn3 in client_names_list:
                                 if mailfrom_lwr.count(client_syn3.synonym3.lower()) > 0:
                                     client_id = client_syn3.client_id
+                                    print("c string")
+                                    print(client_syn3)
                                     break
+
     except:
         print("Client ID not found using mailfrom.")
     if client_id:
