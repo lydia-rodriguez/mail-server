@@ -34,9 +34,9 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     # Use this query to test if mailfrom value can be found in client_email column of clients table
     # and output client_id.
+    client_id_mailfrom = select([Client.client_id]).where(Client.client_email == mailfrom_str)
 
     try:
-        client_id_mailfrom = select([Client.client_id]).where(Client.client_email == mailfrom_str)
         with engine.connect() as conn:
             results_client_id = conn.execute(client_id_mailfrom)
             ## some code
