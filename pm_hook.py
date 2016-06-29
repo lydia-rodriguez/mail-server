@@ -47,7 +47,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     except:
         print("Client ID not found using mailfrom.")        
 
-        client_id_mailfrom = select([Client.client_id]).where(Client.client_name.lower() == (mailfrom_str))
+        client_id_mailfrom = select([Client.client_id]).where(Client.client_name == (mailfrom_str))
         try:
             with engine.connect() as conn:
                 results_client_id = conn.execute(client_id_mailfrom)
@@ -61,7 +61,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                     # print(key, client_id)
         except:
             print("NOPE")
-            
+
     if len(client_name) > 0:
         print("Client Found: " + str(client_name) + ' ' + str(client_id))
 
