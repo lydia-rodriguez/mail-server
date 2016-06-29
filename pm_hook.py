@@ -30,7 +30,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         results_client_id = conn.execute(client_id_mailfrom)
         ## some code
 
-    b = client_id_mailfrom.fetchall()
+    b = results_client_id.fetchall()
     c = b[0]
     d = dict(c)
 
