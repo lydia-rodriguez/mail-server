@@ -56,6 +56,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 results_client_nm = conn.execute(client_nm).fetchall()
                 ## some code
                 for client in results_client_nm:
+                    print(str(client).lower())
                     if mailfrom_str.count(str(client).lower()) > 0:
                         client_name = str(client.encode('utf-8'))
                         print("Client found: " + client_name)
