@@ -34,11 +34,10 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     c = b[0]
     d = dict(zip(c.keys(), c.values()))
 
-    for x, y in d:
-        print(x)
-        print(y)
+    for k, v in d.items():
+        print(k, v)
 
-    # for client_id in results_client_id:
+        # for client_id in results_client_id:
     #     print("client id:")
     #     print(''.join(map(str, client_id)))
     #     print(type(client_id))
