@@ -68,7 +68,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                                 results_client_syn1 = conn_syn1.execute(client_syn1).fetchall()
                                 ## some code
                                 for syn1 in results_client_syn1:
-                                    if mailfrom_str.count(syn1[0].lower()) > 0:
+                                    syn1 = syn1[0].lower()
+                                    if mailfrom_str.count(syn1) > 0:
                                         client_syn_name = select([Client.client_name]).where(Client.synonym1 == syn1)
                                         client_name = str(client_syn_name.encode('utf-8'))
                                         break
