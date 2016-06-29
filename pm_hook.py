@@ -10,7 +10,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     client_id = None
     client_name = None
-    site_ID = None
+    site_id = None
     mailfrom_lwr = mailfrom.lower()
 
     print(mailfrom_lwr)
@@ -59,11 +59,13 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 for site_name_list in site_query:
                     if site_name_list.site_name:
                         if mailfrom_lwr.count(site_name_list.site_name.lower()) > 0:
-                            site_ID = site_name_list.site_id
+                            site_id = site_name_list.site_id
                             break
                     
-
-                print("Site ID: " + str(site_ID))
+                if site_id:
+                    print("Site ID: " + str(site_id))
+                else:
+                    print("Site not found.")
             else:
                 print("Client not found.")
 
