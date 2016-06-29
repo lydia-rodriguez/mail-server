@@ -29,7 +29,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 k = key
                 client_name = str(value.encode('utf-8'))
                 # print(k, client_name)
-    except:
+    except IndexError:
         print("Client name not found.")
 
     # Use this query to test if mailfrom value can be found in client_email column of clients table
@@ -46,7 +46,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 k = key
                 client_id = int(value)
                 # print(key, client_id)
-    except:
+    except IndexError:
         print("Client ID not found using mailfrom.")
 
         client_nm = select([Client.client_name])
@@ -57,7 +57,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 print(results_client_nm)
 
                 for client in results_client_nm:
-                    if mailfrom_str.count(client[0].lower()) > 0:
+                    if mailfrom_str.count(client.lower()) > 0:
                         client_name = str(client.encode('utf-8'))
                         print("Client found: " + client_name)
                     else:
@@ -72,7 +72,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                                         print(''.join(syn))
                         except:
                             print("Syn FAIL")
-        except:
+        except IndexError:
             print("FAIL")
 
     if len(client_name) > 0:
@@ -96,7 +96,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 print("Site Found: " + str(site_name))
             else:
                 print("Site not found.")
-        except:
+        except IndexError:
             print("Site not found.")
 
     else:
