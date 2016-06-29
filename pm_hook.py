@@ -26,7 +26,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             for client_email_query in client_query:
                 if client_email_query.client_email:
                     if mailfrom_lwr.count(client_email_query.client_email.lower()) > 0:
-                        client_id = client_email_query.client_email
+                        client_id = client_email_query.client_id
             else:
                 for client_name in client_query:
                     if mailfrom_lwr.count(client_name.client_name.lower()) > 0:
