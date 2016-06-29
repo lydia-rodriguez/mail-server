@@ -18,10 +18,6 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     # and output client_name.
     client_name_mailfrom = select([Client.client_name]).where(Client.client_email == (str(mailfrom)))
 
-    # Use this query to test if mailfrom value can be found in client_email column of clients table
-    # and output client_id.
-    client_id_mailfrom = select([Client.client_id]).where(Client.client_email == (str(mailfrom)))
-
     with engine.connect() as conn:
         results_client_name = conn.execute(client_name_mailfrom)
         ## some code
@@ -30,9 +26,12 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         client_name_dict = dict(zip(c.keys(), c.values()))
         for key, value in client_name_dict.items():
             k = key
-            k[value] = str(value.encode('utf-8'))
-            v = k[value]
-            print(k, v)
+            client_name = str(value.encode('utf-8'))
+            print(k, client_name)
+
+    # Use this query to test if mailfrom value can be found in client_email column of clients table
+    # and output client_id.
+    client_id_mailfrom = select([Client.client_id]).where(Client.client_email == (str(mailfrom)))
 
     with engine.connect() as conn:
         results_client_id = conn.execute(client_id_mailfrom)
@@ -41,7 +40,11 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         c = b[0]
         client_id_dict = dict(zip(c.keys(), c.values()))
         for key, value in client_id_dict.items():
-            print(key, value)
+            k = key
+            client_id = str(value.encode('utf-8'))
+            print(key, client_id)
+
+    print("Found -> " + client_id + ': ' + client_name)
 
         # for client_id in results_client_id:
     #     print("client id:")
