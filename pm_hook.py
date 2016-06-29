@@ -62,8 +62,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                                     print(client_syn3)
                                     break
 
-    except:
-        print("Client ID not found using mailfrom.")
+    except Exception as error:
+        print(error)
     if client_id:
         print("Client ID: " + str(client_id))
     else:
