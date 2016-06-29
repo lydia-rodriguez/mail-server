@@ -37,6 +37,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                         print("a string")
                         print(type(client_id))
                         print(client_id)
+                        break
 
 
             site_name_fromClient = select([Site.site_name]).where(Site.client_id == results_client_id[0])
