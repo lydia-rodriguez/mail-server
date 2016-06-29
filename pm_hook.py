@@ -54,10 +54,11 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             with engine.connect() as conn:
                 results_client_syn = conn.execute(client_syn).fetchall()
                 ## some code
-                print(results_client_syn)
+                # print(results_client_syn)
 
                 for client in results_client_syn:
-                    if (mailfrom_str.count(client.lower()) > 0):
+                    print("checking . . .")
+                    if mailfrom_str.count(client.lower()) > 0:
                         print("TRUE")
                         print(client)
                     else:
