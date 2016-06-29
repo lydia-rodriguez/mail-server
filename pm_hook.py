@@ -27,7 +27,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         for key, value in client_name_dict.items():
             k = key
             client_name = str(value.encode('utf-8'))
-            print(k, client_name)
+            # print(k, client_name)
 
     # Use this query to test if mailfrom value can be found in client_email column of clients table
     # and output client_id.
@@ -42,19 +42,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         for key, value in client_id_dict.items():
             k = key
             client_id = int(value)
-            print(key, client_id)
+            # print(key, client_id)
 
-    # for client_id in results_client_id:
-    #     print("client id:")
-    #     print(''.join(map(str, client_id)))
-    #     print(type(client_id))
-    #     client_id_encoded = client_id.encode('utf-8')
-    #     print(client_id_encoded)
-    #
-    # for client_name in results_client_name:
-    #     print("client name:")
-    #     print(''.join(client_name))
-    #
     # Use this query to test if client_id value is found in sites table and output site_name.
     client_sites = select([Site.site_name]).where(Site.client_id == int(client_id))
 
@@ -67,7 +56,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         for key, value in site_name_dict.items():
             k = key
             site_name = str(value.encode('utf-8'))
-            print(key, site_name)
+            # print(key, site_name)
 
     if len(client_name) > 0:
         print("Client Found: " + str(client_name) + ' ' + str(client_id))
