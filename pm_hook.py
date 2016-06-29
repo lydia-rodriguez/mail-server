@@ -13,6 +13,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     site_name = ''
     mailfrom_str = str(mailfrom).lower()
 
+    print(mailfrom_str)
+
     # Use this query to test if mailfrom value can be found in client_email column of clients table
     # and output client_name.
     client_name_mailfrom = select([Client.client_name]).where(Client.client_email == (mailfrom_str))
