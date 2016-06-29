@@ -21,7 +21,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     try:
         with engine.connect() as conn:
-            results_client_id = conn.execute(client_id_mailfrom)
+            results_client_id = conn.execute(client_id_mailfrom).fetchall()
             ## some code
             # b = results_client_id.fetchall()
             # c = b[0]
@@ -29,8 +29,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             # for key, value in client_id_dict.items():
             #     k = key
             #     client_id = int(value)
-
-            print(int(client_id))
+            for client_id in results_client_id:
+                print(int(client_id))
                 # print(key, client_id)
     except IndexError:
         print("Client ID not found using mailfrom.")
