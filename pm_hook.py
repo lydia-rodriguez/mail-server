@@ -30,7 +30,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         client_name_dict = dict(zip(c.keys(), c.values()))
         for key, value in client_name_dict.items():
             k = key
-            v = str(value.encode('utf-8'))
+            k[value] = str(value.encode('utf-8'))
+            v = k[value]
             print(k, v)
 
     with engine.connect() as conn:
