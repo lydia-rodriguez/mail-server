@@ -25,7 +25,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             print(type(results_client_id))
             print(results_client_id)
 
-            site_name_fromClient = select([Site.site_name]).where(Site.client_id == results_client_id)
+            site_name_fromClient = select([Site.site_name]).where(Site.client_id == results_client_id[0])
             results_site_name = conn.execute(site_name_fromClient).first()
             print(type(results_site_name))
             print(results_site_name)
