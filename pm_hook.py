@@ -21,7 +21,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     try:
         with engine.connect() as conn:
-            client_query = conn.execute(client_id_mailfrom).first()
+            client_query = conn.execute(client_id_mailfrom).fetchall()
 
             for client_email_query in client_query:
                 if client_email_query.client_email:
