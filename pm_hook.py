@@ -97,7 +97,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 print("Site Found: " + str(site_name))
             else:
                 print("Site not found.")
-        except IndexError:
+        except:
             print("Site not found.")
 
     else:
