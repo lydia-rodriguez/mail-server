@@ -31,8 +31,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         results_client_id = conn.execute(client_id_mailfrom)
         ## some code
 
-    # Use this query to test if client_id value is found in sites table and output site_id.
-    client_sites = select([Site.client_id]).where(Site.client_id == int(client_id))
+    # Use this query to test if client_id value is found in sites table and output site_name.
+    client_sites = select([Site.site_name]).where(Site.client_id == int(client_id))
 
     with engine.connect() as conn:
         results_site_id = conn.execute(client_sites)
@@ -45,7 +45,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         print(''.join(client_name))
 
     for site_id in results_site_id:
-        print(''.join(map(str, site_id)))
+        print(''.join(str, site_id))
 
     if len(client_name) > 0:
         print("Client Found: " + str(client_name) + str(client_id))
