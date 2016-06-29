@@ -62,7 +62,6 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                         client_name = str(client.encode('utf-8'))
                         break
                     else:
-                        print(''.join(client))
                         client_syn1 = select([Client.synonym1])
                         try:
                             with engine.connect() as conn:
@@ -70,9 +69,13 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                                 ## some code
                                 for syn in results_client_syn1:
                                     if mailfrom_str.count(syn[0].lower()) > 0:
-                                        print(''.join(syn))
+                                        client_syn_name = select([Client.client_name]).where(Client.synonym1 == syn)
+                                        client_name = str(client_syn_name.encode('utf-8'))
+                                        break
                         except:
-                            print("Syn FAIL")
+                            client_syn1 = select([Client.synonym1])
+1                            try:
+
         except IndexError:
             print("FAIL")
 
