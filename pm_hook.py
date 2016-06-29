@@ -11,10 +11,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     client_id = ''
     client_name = ''
     site_name = ''
-
-    print(type(mailfrom))
-
-    mailfrom_str = str(mailfrom).lower()
+    mailfrom_str = mailfrom.lower()
 
     print(mailfrom_str)
 
