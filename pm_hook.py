@@ -8,7 +8,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     connection = engine.connect()
 
-    client_id = '1'
+    client_id = '5'
     client_name = ''
     site_name = ''
 
@@ -51,7 +51,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     if len(client_name) > 0:
         print("Client Found: " + str(client_name) + str(client_id))
         if len(site_name) > 0:
-            print("Site Found: " + site_name)
+            print("Site Found: " + str(site_name))
         else:
             print("Site not found.")
     else:
