@@ -24,14 +24,29 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             results_client_id = conn.execute(client_id_mailfrom).first()
 
             if results_client_id:
-                client_id = results_client_id
+                client_id = results_client_id[0]
             else:
                 client_names = select([Client])
                 client_names_list = conn.execute(client_names).fetchall()
-                for client in client_names_list:
-                    if mailfrom_lwr.count(client.client_name.lower()) > 0:
-                        client_id = client.client_id
+                for client_name in client_names_list:
+                    if mailfrom_lwr.count(client_name.client_name.lower()) > 0:
+                        client_id = client_name.client_id
                         break
+                else:
+                    for client_syn1 in client_names_list:
+                        if mailfrom_lwr.count(client_syn1.synonym1.lower()) > 0:
+                            client_id = client_syn1.client_id
+                            break
+                    else:
+                        for client_syn2 in client_names_list:
+                            if mailfrom_lwr.count(client_syn2.synonym2.lower()) > 0:
+                                client_id = client_syn2.client_id
+                                break
+                        else:
+                            for client_syn3 in client_names_list:
+                                if mailfrom_lwr.count(client_syn3.synonym3.lower()) > 0:
+                                    client_id = client_syn3.client_id
+                                    break
     except:
         print("Client ID not found using mailfrom.")
     if client_id:
