@@ -73,9 +73,9 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                                         client_name = str(client_syn_name.encode('utf-8'))
                                         break
                         except:
-                            client_syn1 = select([Client.synonym1])
-1                            try:
-
+#                             client_syn1 = select([Client.synonym1])
+# 1                            try:
+                            print("fail")
         except IndexError:
             print("FAIL")
 
