@@ -49,7 +49,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     if len(client_name) > 0:
         print("Client Found: " + str(client_name) + str(client_id))
-        if site_name > 0:
+        if len(site_name) > 0:
             print("Site Found: " + site_name)
         else:
             print("Site not found.")
