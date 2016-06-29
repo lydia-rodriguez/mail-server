@@ -29,7 +29,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         c = b[0]
         client_name_dict = dict(zip(c.keys(), c.values()))
         for key, value in client_name_dict.items():
-            print(key, str(value.encode('utf-8')))
+            print(key, (str(value.encode('utf-8'))).replace("'", ""))
 
     with engine.connect() as conn:
         results_client_id = conn.execute(client_id_mailfrom)
