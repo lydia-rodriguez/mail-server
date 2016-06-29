@@ -30,7 +30,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             #     k = key
             #     client_id = int(value)
 
-            print(client_id)
+            print(int(client_id))
                 # print(key, client_id)
     except IndexError:
         print("Client ID not found using mailfrom.")
