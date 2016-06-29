@@ -13,9 +13,11 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     site_name = ''
     mailfrom_str = str(mailfrom).lower()
 
+    print(mailfrom_str)
+
     # Use this query to test if mailfrom value can be found in client_email column of clients table
     # and output client_name.
-    client_name_mailfrom = select([Client.client_name]).where(Client.client_email == (mailfrom_str))
+    client_name_mailfrom = select([Client.client_name]).where(Client.client_email == mailfrom_str)
     try:
         with engine.connect() as conn:
             results_client_name = conn.execute(client_name_mailfrom)
@@ -32,7 +34,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     # Use this query to test if mailfrom value can be found in client_email column of clients table
     # and output client_id.
-    client_id_mailfrom = select([Client.client_id]).where(Client.client_email == (mailfrom_str))
+    client_id_mailfrom = select([Client.client_id]).where(Client.client_email == mailfrom_str)
     try:
         with engine.connect() as conn:
             results_client_id = conn.execute(client_id_mailfrom)
@@ -47,7 +49,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     except:
         print("Client ID not found using mailfrom.")        
 
-        client_id_mailfrom = select([Client.client_id]).where(Client.client_name == (mailfrom_str))
+        client_id_mailfrom = select([Client.client_id]).where(Client.client_name == mailfrom_str)
         try:
             with engine.connect() as conn:
                 results_client_id = conn.execute(client_id_mailfrom)
