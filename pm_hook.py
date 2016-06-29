@@ -38,16 +38,18 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                     for client_syn1 in client_names_list:
                         print(3)
                         print(client_syn1)
-                        if mailfrom_lwr.count(client_syn1.synonym1.lower()) > 0:
-                            client_id = client_syn1.client_id
-                            print("a string")
-                            print(client_syn1.synonym1)
-                            break
+                        if client_syn1.synonym1:
+                            if mailfrom_lwr.count(client_syn1.synonym1.lower()) > 0:
+                                client_id = client_syn1.client_id
+                                print("a string")
+                                print(client_syn1.synonym1)
+                                break
                     else:
                         for client_syn2 in client_names_list:
                             print(4)
                             print(client_syn2)
-                            if mailfrom_lwr.count(client_syn2.synonym2.lower()) > 0:
+                            if client_syn2.synonym2:
+                                if mailfrom_lwr.count(client_syn2.synonym2.lower()) > 0:
                                 print("b string")
                                 print(client_syn2)
                                 client_id = client_syn2.client_id
@@ -56,11 +58,12 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                             for client_syn3 in client_names_list:
                                 print(5)
                                 print(client_syn3)
-                                if mailfrom_lwr.count(client_syn3.synonym3.lower()) > 0:
-                                    client_id = client_syn3.client_id
-                                    print("c string")
-                                    print(client_syn3)
-                                    break
+                                if client_syn3.synonym3:
+                                    if mailfrom_lwr.count(client_syn3.synonym3.lower()) > 0:
+                                        client_id = client_syn3.client_id
+                                        print("c string")
+                                        print(client_syn3)
+                                        break
 
     except Exception as error:
         print(error)
