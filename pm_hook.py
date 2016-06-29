@@ -48,20 +48,23 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         # Use this query to test if client_id value is found in sites table and output site_name.
         client_sites = select([Site.site_name]).where(Site.client_id == int(client_id))
 
-        with engine.connect() as conn:
-            results_site_id = conn.execute(client_sites)
-            ## some code
-            b = results_site_id.fetchall()
-            c = b[0]
-            site_name_dict = dict(zip(c.keys(), c.values()))
-            for key, value in site_name_dict.items():
-                k = key
-                site_name = str(value.encode('utf-8'))
-                # print(key, site_name)
-
-        if len(site_name) > 0:
-            print("Site Found: " + str(site_name))
-        else:
+        try:
+            with engine.connect() as conn:
+                results_site_id = conn.execute(client_sites)
+                ## some code
+                b = results_site_id.fetchall()
+                c = b[0]
+                site_name_dict = dict(zip(c.keys(), c.values()))
+                for key, value in site_name_dict.items():
+                    k = key
+                    site_name = str(value.encode('utf-8'))
+                    # print(key, site_name)
+            if len(site_name) > 0:
+                print("Site Found: " + str(site_name))
+            else:
+                print("Site not found.")
+        except:
             print("Site not found.")
+
     else:
         print("Client not found.")
