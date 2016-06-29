@@ -44,7 +44,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             client_id = int(value)
             print(key, client_id)
 
-    print("Found -> " + client_id + ': ' + client_name)
+    print("Found -> " + str(client_id) + ': ' + client_name)
 
         # for client_id in results_client_id:
     #     print("client id:")
