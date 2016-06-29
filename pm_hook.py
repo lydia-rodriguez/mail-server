@@ -47,19 +47,23 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 client_id = int(value)
                 # print(key, client_id)
     except:
-        print("Client ID not found using mailfrom.")        
+        print("Client ID not found using mailfrom.")
 
         client_syn = select([Client.client_name])
         try:
             with engine.connect() as conn:
                 results_client_syn = conn.execute(client_syn)
                 ## some code
-                b = results_client_syn.fetchall()
-                client_syn_dict = dict(zip(b.keys(), b.values()))
-                for key, value in client_syn_dict.items():
-                    k = key
-                    client_syn_value = int(value)
-                    print(client_syn_value)
+
+                for x in results_client_syn:
+                    print(str(x))
+
+                    # b = results_client_syn.fetchall()
+                    # client_syn_dict = dict(zip(b.keys(), b.values()))
+                    # for key, value in client_syn_dict.items():
+                    #     k = key
+                    #     client_syn_value = int(value)
+                    #     print(client_syn_value)
 
         # client_id_mailfrom = select([Client.client_id]).where(Client.client_name == mailfrom_str)
         # try:
