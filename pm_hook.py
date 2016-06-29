@@ -49,23 +49,36 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     except:
         print("Client ID not found using mailfrom.")        
 
-        client_id_mailfrom = select([Client.client_id]).where(Client.client_name == mailfrom_str)
+        client_syn = select([Client.client_name])
         try:
             with engine.connect() as conn:
-                results_client_id = conn.execute(client_id_mailfrom)
+                results_client_syn = conn.execute(client_syn)
                 ## some code
-                b = results_client_id.fetchall()
+                b = results_client_syn.fetchall()
                 c = b[0]
-                client_id_dict = dict(zip(c.keys(), c.values()))
-                for key, value in client_id_dict.items():
+                client_syn_dict = dict(zip(c.keys(), c.values()))
+                for key, value in client_syn_dict.items():
                     k = key
-                    client_id = int(value)
-                    # print(key, client_id)
+                    client_syn_value = int(value)
+                    print(client_syn_value)
+
+        # client_id_mailfrom = select([Client.client_id]).where(Client.client_name == mailfrom_str)
+        # try:
+        #     with engine.connect() as conn:
+        #         results_client_id = conn.execute(client_id_mailfrom)
+        #         ## some code
+        #         b = results_client_id.fetchall()
+        #         c = b[0]
+        #         client_id_dict = dict(zip(c.keys(), c.values()))
+        #         for key, value in client_id_dict.items():
+        #             k = key
+        #             client_id = int(value)
+        #             # print(key, client_id)
         except:
             print("NOPE")
 
     if len(client_name) > 0:
-        print("Client Found: " + str(client_name) + ' ' + str(client_id))
+        print("Client Found: " + str(client_name))
 
         # Use this query to test if client_id value is found in sites table and output site_name.
         client_sites = select([Site.site_name]).where(Site.client_id == int(client_id))
