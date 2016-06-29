@@ -22,8 +22,6 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     # and output client_id.
     client_id_mailfrom = select([Client.client_id]).where(Client.client_email == (str(mailfrom)))
 
-    site_name = 5
-
     with engine.connect() as conn:
         results_client_name = conn.execute(client_name_mailfrom)
         ## some code
