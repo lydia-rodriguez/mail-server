@@ -66,7 +66,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         site_name_dict = dict(zip(c.keys(), c.values()))
         for key, value in site_name_dict.items():
             k = key
-            site_name = int(value)
+            site_name = str(value.encode('utf-8'))
             print(key, client_id)
 
     if len(client_name) > 0:
