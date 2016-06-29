@@ -37,10 +37,12 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 else:
                     for client_syn1 in client_names_list:
                         print(3)
+                        print(client_syn1)
+                        print(mailfrom_lwr)
                         if mailfrom_lwr.count(client_syn1.synonym1.lower()) > 0:
                             client_id = client_syn1.client_id
                             print("a string")
-                            print(client_syn1)
+                            print(client_syn1.synonym1)
                             break
                     else:
                         for client_syn2 in client_names_list:
