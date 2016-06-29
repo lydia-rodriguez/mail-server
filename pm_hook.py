@@ -32,7 +32,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     b = results_client_id.fetchall()
     c = b[0]
-    d = dict(c)
+    d = dict(zip(c.keys(), c.values()))
 
     for x in d:
         print(x)
