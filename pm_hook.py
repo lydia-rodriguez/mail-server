@@ -54,7 +54,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
             if client_id:
                 print("Client ID: " + str(client_id))
                 site_id_clientID = select([Site.site_name]).where(Site.client_id == client_id)
-                site_query = conn.execute(site_id_clientID).fetchall(site_id_clientID)
+                site_query = conn.execute(site_id_clientID).fetchall()
 
                 for site_name_list in site_query:
                     if site_name_list.site_name:
