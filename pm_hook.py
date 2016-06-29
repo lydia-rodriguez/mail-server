@@ -52,9 +52,9 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         client_syn = select([Client.client_name])
         try:
             with engine.connect() as conn:
-                results_client_syn = conn.execute(client_syn)
+                results_client_syn = conn.execute(client_syn).fetchall
                 ## some code
-                print(dir(results_client_syn))
+                print(results_client_syn)
                 for x in results_client_syn:
                     print(dir(x))
 
