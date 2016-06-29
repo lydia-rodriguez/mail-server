@@ -31,6 +31,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 client_names_list = conn.execute(client_names).fetchall()
                 for client in client_names_list:
                     print("another string")
+                    print(client)
                     if mailfrom_lwr.count(client[1]) > 0:
                         client_id = client[0]
                         print("a string")
