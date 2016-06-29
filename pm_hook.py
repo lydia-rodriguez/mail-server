@@ -25,17 +25,20 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     with engine.connect() as conn:
         results_client_name = conn.execute(client_name_mailfrom)
         ## some code
+        b = results_client_name.fetchall()
+        c = b[0]
+        client_name_dict = dict(zip(c.keys(), c.values()))
+        for key, value in client_name_dict.items():
+            print(key, value)
 
     with engine.connect() as conn:
         results_client_id = conn.execute(client_id_mailfrom)
         ## some code
-
-    b = results_client_id.fetchall()
-    c = b[0]
-    d = dict(zip(c.keys(), c.values()))
-
-    for k, v in d.items():
-        print(k, v)
+        b = results_client_id.fetchall()
+        c = b[0]
+        client_id_dict = dict(zip(c.keys(), c.values()))
+        for key, value in client_id_dict.items():
+            print(key, value)
 
         # for client_id in results_client_id:
     #     print("client id:")
