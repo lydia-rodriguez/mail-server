@@ -72,6 +72,13 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                                     if mailfrom_str.count(syn1) > 0:
                                         print("syn found")
                                         client_syn_name = select([Client.client_name]).where(Client.synonym1 == syn1)
+
+                                        b = client_syn_name.fetchall()
+                                        c = b[0]
+                                        client_name_dict = dict(zip(c.keys(), c.values()))
+                                        for key, value in client_name_dict.items():
+                                            client_name = str(value.encode('utf-8'))
+
                                         client_name = str(client_syn_name.encode('utf-8'))
                                         break
                         except IndexError:
