@@ -46,7 +46,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
 
 
-    except IndexError:
+    except:
         print("Client ID not found using mailfrom.")
 
     else:
