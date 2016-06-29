@@ -36,6 +36,8 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     for x in d:
         print(x)
+        for y in d[x]:
+            print(y)
 
     # for client_id in results_client_id:
     #     print("client id:")
