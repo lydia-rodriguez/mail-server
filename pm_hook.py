@@ -8,7 +8,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
 
     connection = engine.connect()
 
-    client_id = ''
+    client_id = '5'
     client_name = ''
     site_name = ''
 
@@ -29,9 +29,9 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
         results_client_id = conn.execute(client_id_mailfrom)
         ## some code
 
-    for client_id in results_client_id:
-        print("client id:")
-        print(''.join(map(str, client_id)))
+    # for client_id in results_client_id:
+    #     print("client id:")
+    #     print(''.join(map(str, client_id)))
 
     for client_name in results_client_name:
         print("client name:")
