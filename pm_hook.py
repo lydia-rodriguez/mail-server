@@ -11,6 +11,9 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     client_id = ''
     client_name = ''
     site_name = ''
+
+    print(type(mailfrom))
+
     mailfrom_str = str(mailfrom).lower()
 
     print(mailfrom_str)
@@ -55,15 +58,22 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 results_client_syn = conn.execute(client_syn).fetchall()
                 ## some code
                 print(results_client_syn)
-                for x in results_client_syn:
-                    print(dir(x))
+
+                for client in results_client_syn:
+                    if (mailfrom_str.count(client) > 0):
+                        print("TRUE")
+                        print(mailfrom_str.find(client))
+                        print(client)
+                    else:
+                        print("FALSE")
+
 
                     # b = results_client_syn.fetchall()
-                    # client_syn_dict = dict(zip(b.keys(), b.values()))
-                    # for key, value in client_syn_dict.items():
-                    #     k = key
-                    #     client_syn_value = int(value)
-                    #     print(client_syn_value)
+                # client_syn_dict = dict(zip(b.keys(), b.values()))
+                # for key, value in client_syn_dict.items():
+                #     k = key
+                #     client_syn_value = int(value)
+                #     print(client_syn_value)
 
         # client_id_mailfrom = select([Client.client_id]).where(Client.client_name == mailfrom_str)
         # try:
