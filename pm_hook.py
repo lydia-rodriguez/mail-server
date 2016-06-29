@@ -57,8 +57,12 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 print(results_client_syn)
 
                 for client in results_client_syn:
+<<<<<<< HEAD
                     print("checking . . .")
                     if mailfrom_str.count(client.lower()) > 0:
+=======
+                    if (mailfrom_str.count(client.lower()) > 0):
+>>>>>>> parent of 01f5674... debugging
                         print("TRUE")
                         print(client)
                     else:
