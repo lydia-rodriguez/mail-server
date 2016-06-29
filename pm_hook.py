@@ -61,8 +61,17 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                         client_name = str(client.encode('utf-8'))
                         print("Client found: " + client_name)
                     else:
-                        print("FALSE")
-                        print(client)
+                        client_syn1 = select([Client.synonym1])
+                        try:
+                            with engine.connect() as conn:
+                                results_client_syn1 = conn.execute(client_syn1).fetchall()
+                                ## some code
+                                print(results_client_syn1)
+                                for syn in results_client_syn1:
+                                    if mailfrom_str.count(syn[0].lower()) > 0:
+                                        print(''.join(syn))
+                        except:
+                            print("Syn FAIL")
         except:
             print("FAIL")
 
