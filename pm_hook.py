@@ -25,6 +25,9 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
     with engine.connect() as conn:
         results_client_name = conn.execute(client_name_mailfrom)
         ## some code
+        for s in conn.query().all():
+            print(s.__dict__)
+
     with engine.connect() as conn:
         results_client_id = conn.execute(client_id_mailfrom)
         ## some code
