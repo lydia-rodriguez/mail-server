@@ -89,7 +89,7 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                                     site_id = site_num_list.site_num
                                     break
                 elif len(site_query) == 1:
-                    print("Just one site found.")
+                    site_id = site_query.site_name
                 else:
                     print("No sites found.")
                 if site_id:
