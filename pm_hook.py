@@ -27,9 +27,14 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 if client_email_list.client_email:
                     if mailfrom_lwr.count(client_email_list.client_email.lower()) > 0:
                         client_id = client_email_list.client_id
+                    elif data.count(client_email_list.client_email.lower()) > 0:
+                        client_id = client_email_list.client_id
             else:
                 for client_name_list in client_query:
                     if mailfrom_lwr.count(client_name_list.client_name.lower()) > 0:
+                        client_id = client_name_list.client_id
+                        break
+                    elif data.count(client_name_list.client_name.lower()) > 0:
                         client_id = client_name_list.client_id
                         break
                 else:
@@ -38,10 +43,16 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                             if mailfrom_lwr.count(client_syn1_list.synonym1.lower()) > 0:
                                 client_id = client_syn1_list.client_id
                                 break
+                            elif data.count(client_syn1_list.synonym1.lower()) > 0:
+                                client_id = client_syn1_list.client_id
+                                break
                     else:
                         for client_syn2_list in client_query:
                             if client_syn2_list.synonym2:
                                 if mailfrom_lwr.count(client_syn2_list.synonym2.lower()) > 0:
+                                    client_id = client_syn2_list.client_id
+                                    break
+                                elif data.count(client_syn2_list.synonym2.lower()) > 0:
                                     client_id = client_syn2_list.client_id
                                     break
                         else:
@@ -50,17 +61,32 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                                     if mailfrom_lwr.count(client_syn3_list.synonym3.lower()) > 0:
                                         client_id = client_syn3_list.client_id
                                         break
+                                    elif data.count(client_syn3_list.synonym3.lower()) > 0:
+                                        client_id = client_syn3_list.client_id
+                                        break
 
             if client_id:
                 print("Client ID: " + str(client_id))
-                site_id_clientID = select([Site.site_name]).where(Site.client_id == client_id)
-                site_query = conn.execute(site_id_clientID).fetchall()
+                site_id_client_id = select([Site.site_name]).where(Site.client_id == client_id)
+                site_query = conn.execute(site_id_client_id).fetchall()
 
                 for site_name_list in site_query:
                     if site_name_list.site_name:
                         if mailfrom_lwr.count(site_name_list.site_name.lower()) > 0:
                             site_id = site_name_list.site_id
                             break
+                        elif data.count(site_name_list.site_name.lower()) > 0:
+                            site_id = site_name_list.site_id
+                            break
+                else:
+                    for site_num_list in site_query:
+                        if site_num_list.site_num:
+                            if mailfrom_lwr.count(str(site_num_list.site_num)) > 0:
+                                site_id = site_num_list.site_num
+                                break
+                            elif data.count(str(site_num_list.site_num)) > 0:
+                                site_id = site_num_list.site_num
+                                break
                     
                 if site_id:
                     print("Site ID: " + str(site_id))
