@@ -70,24 +70,26 @@ def process_message_hook(self, peer, mailfrom, rcpttos, data, engine):
                 site_id_client_id = select([Site]).where(Site.client_id == client_id)
                 site_query = conn.execute(site_id_client_id).fetchall()
 
-                for site_name_list in site_query:
-                    if site_name_list.site_name:
-                        if mailfrom_lwr.count(site_name_list.site_name.lower()) > 0:
-                            site_id = site_name_list.site_id
-                            break
-                        elif data.count(site_name_list.site_name.lower()) > 0:
-                            site_id = site_name_list.site_id
-                            break
-                else:
-                    for site_num_list in site_query:
-                        if site_num_list.site_num:
-                            if mailfrom_lwr.count(str(site_num_list.site_num)) > 0:
-                                site_id = site_num_list.site_num
+                if len(site_query) > 1:
+                    for site_name_list in site_query:
+                        if site_name_list.site_name:
+                            if mailfrom_lwr.count(site_name_list.site_name.lower()) > 0:
+                                site_id = site_name_list.site_id
                                 break
-                            elif data.count(str(site_num_list.site_num)) > 0:
-                                site_id = site_num_list.site_num
+                            elif data.count(site_name_list.site_name.lower()) > 0:
+                                site_id = site_name_list.site_id
                                 break
-                    
+                    else:
+                        for site_num_list in site_query:
+                            if site_num_list.site_num:
+                                if mailfrom_lwr.count(str(site_num_list.site_num)) > 0:
+                                    site_id = site_num_list.site_num
+                                    break
+                                elif data.count(str(site_num_list.site_num)) > 0:
+                                    site_id = site_num_list.site_num
+                                    break
+                elif len(site_query) == 1:
+                    print("Just one site found.")
                 if site_id:
                     print("Site ID: " + str(site_id))
                 else:
